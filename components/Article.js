@@ -104,6 +104,7 @@ const data = [
   </div>
 
 */
+const articles = document.createElement('div');
 
 function articleMaker(articleObj) {
   //debugger
@@ -138,19 +139,31 @@ function articleMaker(articleObj) {
   This listener should toggle the class 'article-open' on div.article.
   */
 
+  buttonExpander.addEventListener('onclick', event => {
+    article.classList.toggle('article-open');
+  });
   
   // Step 3: Don't forget to return something from your function!
   return article;
 }
 
+/*
 console.log(articleMaker(data[0]));
 console.log(data[0].title);
 
-
+articles.appendChild(articleMaker(data[0]));
+console.log(articles);*/
 
 /*
   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
+  */
+
+  data.forEach(function(articleObj) {
+    const newArticle = articleMaker(articleObj);
+    articles.appendChild(articleMaker(newArticle));
+  });
+  /*
 
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
