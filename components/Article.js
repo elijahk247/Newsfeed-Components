@@ -86,6 +86,18 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  /*
+  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+  Refresh the page to see the new article.*/
+  {
+    title: 'Step 5: Adding New Article',
+    date: 'August 6th, 2020',
+    firstParagraph: 'This is the first paragraph that is added',
+
+    secondParagraph: 'This is the second paragraph added',
+
+    thirdParagraph: 'This is the third paragraph added'
   }
 ];
 
@@ -104,16 +116,18 @@ const data = [
   </div>
 
 */
-const articles = document.createElement('div');
+const articles = document.querySelector('.articles');
 
 function articleMaker(articleObj) {
   //debugger
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const date = document.createElement('p');
+
   const firstPar = document.createElement('p');
   const secondPar = document.createElement('p');
   const thirdPar = document.createElement('p');
+
   const buttonExpander = document.createElement('span');
 
   article.appendChild(articleTitle);
@@ -129,6 +143,7 @@ function articleMaker(articleObj) {
 
   articleTitle.textContent = articleObj.title;
   date.textContent = articleObj.date;
+  buttonExpander.textContent = '+';
 
   firstPar.textContent = articleObj.firstParagraph;
   secondPar.textContent = articleObj.secondParagraph;
@@ -139,19 +154,20 @@ function articleMaker(articleObj) {
   This listener should toggle the class 'article-open' on div.article.
   */
 
-  buttonExpander.addEventListener('onclick', event => {
+  buttonExpander.addEventListener('click', event => {
     article.classList.toggle('article-open');
   });
   
+
   // Step 3: Don't forget to return something from your function!
   return article;
 }
 
-/*
-console.log(articleMaker(data[0]));
-console.log(data[0].title);
 
-articles.appendChild(articleMaker(data[0]));
+console.log(articleMaker(data[0]));
+//console.log(data[0].title);
+
+/*articles.appendChild(articleMaker(data[0]));
 console.log(articles);*/
 
 /*
@@ -159,12 +175,22 @@ console.log(articles);*/
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
   */
 
-  data.forEach(function(articleObj) {
-    const newArticle = articleMaker(articleObj);
-    articles.appendChild(articleMaker(newArticle));
-  });
+  
+  data.forEach(articleObj => {
+    const theArticle = articleMaker(articleObj);
+    //console.log(theArticle);
+    articles.appendChild(theArticle);
+  })
+
+  /*
+  console.log(articles);
+  articles.appendChild(articleMaker(data[0]));
+  articles.appendChild(articleMaker(data[1]));
+  articles.appendChild(articleMaker(data[2]));
+  */
   /*
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
-  Refresh the page to see the new article.
+
+
+
 */
